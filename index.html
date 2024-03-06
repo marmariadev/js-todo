@@ -21,12 +21,22 @@
         const list = document.getElementById('list');
 
         button.addEventListener('click', () => {
-            const text = input.value;
-            input.value = '';
+            const text = input.value.trim();
+            if (text) {
+                input.value = '';
 
-            const li = document.createElement('li');
-            li.textContent = text;
-            list.appendChild(li);
+                const li = document.createElement('li');
+                li.textContent = text;
+
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Delete';
+                deleteButton.addEventListener('click', () => {
+                    list.removeChild(li);
+                });
+
+                li.appendChild(deleteButton);
+                list.appendChild(li);
+            }
         });
     </script>
 </body>
